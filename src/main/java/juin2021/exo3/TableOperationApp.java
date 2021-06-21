@@ -10,7 +10,9 @@ public class TableOperationApp {
         this.ui = new TableUI();
         this.ui.getFrame().setVisible(true);
         this.ui.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // à compléter...
+
+        this.ui.getTable().setModel( modele );
+        this.ui.getChoixOperation().addActionListener(modele);
     }
 
  

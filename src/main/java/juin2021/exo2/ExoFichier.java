@@ -49,9 +49,15 @@ public class ExoFichier {
      * @throws IOException
      */
     public static void copierLettre(Reader reader, Writer writer, String nom) throws IOException {
-        // à écrire !!!
+    	String line;
     	Scanner sc = new Scanner(reader);
-    	System.out.println( sc.nextLine() );
+    	while ( sc.hasNextLine() ) 
+    	{
+    		line = sc.nextLine();
+    		
+    		writer.write( line.replace( "@N" , nom ) + "\n" );
+    	}
+    	sc.close();
     }
     
     public static void main(String[] args) {
@@ -60,8 +66,8 @@ public class ExoFichier {
 			 Writer w = new FileWriter("output.txt");
 			 //w.write('a');
 			//passerALaLigne(r , w, 60);
-			copierLettre(r , w, "@n");
-			copierLettre(r , w, "@n");
+			copierLettre(r , w, "Babbage");
+			
 			 w.close();
 			 r.close();
 			 

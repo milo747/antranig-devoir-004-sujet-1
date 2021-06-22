@@ -3,19 +3,16 @@ package juin2021.exo3;
 import javax.swing.JFrame;
 
 public class TableOperationApp {
-    private TableUI ui;
-    private OperationTableModele modele = new OperationTableModele();
+	private TableUI ui;
+	private OperationTableModele modele = new OperationTableModele();
 
-    public TableOperationApp() {
-        this.ui = new TableUI();
-        this.ui.getFrame().setVisible(true);
-        this.ui.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public TableOperationApp() {
+		this.ui = new TableUI();
+		this.ui.getFrame().setVisible(true);
+		this.ui.getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.ui.getTable().setModel( modele );
-        this.ui.getChoixOperation().addActionListener(modele);
-    }
-
- 
-    
+		this.ui.getTable().setModel(modele);
+		this.ui.getChoixOperation().addActionListener(modele);
+	}
 
 }

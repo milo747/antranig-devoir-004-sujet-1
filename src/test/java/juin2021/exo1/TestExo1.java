@@ -24,15 +24,30 @@ public class TestExo1 {
     
     @Test
     public void testDepassePoids() {
+    	// On crée les objets manipulés.
         Inventaire inv = new Inventaire();
         Item item1 = new Item("bois", 5);
         Item item2 = new Item("or", 1);
-        //inv.ajouter(item2, 201);
+        
+        // On rempli l'inventaire au poids maximal 200.
         inv.ajouter(item2, 195);
         inv.ajouter(item1, 1);
+        
+        // On ajoute un objet dans l'inventaire qui est plein
         inv.ajouter(item1, 1);
+        
+        // On test les quantité et le poids de l'inventaire
         assertEquals(1, inv.getQuantite(item1));
+        assertEquals(195, inv.getQuantite(item2));
         assertEquals(200, inv.getPoidsTotal());
+        
+        // On test lorsque l'inventaire n'a pas assez de place pour la quantité d'ajout souhaité 
+        inv.retirer(item2,8);
+        inv.ajouter(item1, 2);
+        assertEquals(192, inv.getPoidsTotal());
+        inv.ajouter(item1, 1);
+        assertEquals(197, inv.getPoidsTotal());
+        
     }
 
     @Test

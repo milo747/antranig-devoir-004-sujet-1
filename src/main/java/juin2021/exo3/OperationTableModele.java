@@ -29,20 +29,18 @@ public class OperationTableModele extends AbstractTableModel implements ActionLi
     }
 
     @Override
-    public Object getValueAt(int rowIndex, int columnIndex) 
-    {
-      if( operation.equals("+") )
-    	  return (rowIndex+1) + columnIndex;
-      if( operation.equals("*") )
-      {
-    	  if( columnIndex == 0)
-    		  return (rowIndex+1);
-      		if( rowIndex == 0)
-      			return (columnIndex);
-      		return columnIndex * (rowIndex+1);
-      }
-      return 0;
-    }
+	public Object getValueAt(int rowIndex, int columnIndex) {
+		if (operation.equals("+"))
+			return (rowIndex + 1) + columnIndex;
+		if (operation.equals("*")) {
+			if (columnIndex == 0)
+				return (rowIndex + 1);
+			if (rowIndex == 0)
+				return (columnIndex);
+			return columnIndex * (rowIndex + 1);
+		}
+		return 0;
+	}
 
     @Override
     public String getColumnName(int column) {
@@ -52,9 +50,9 @@ public class OperationTableModele extends AbstractTableModel implements ActionLi
             return Integer.toString(column);
     }
     
-    public void actionPerformed(ActionEvent e) {
-    	if( e.getSource() instanceof JComboBox )
-    		setOperation( (String) ((JComboBox<?>) e.getSource()).getSelectedItem() );
-}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() instanceof JComboBox)
+			setOperation((String) ((JComboBox<?>) e.getSource()).getSelectedItem());
+	}
 
 }

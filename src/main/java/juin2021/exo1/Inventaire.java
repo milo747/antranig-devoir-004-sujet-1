@@ -2,9 +2,7 @@ package juin2021.exo1;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
-import java.util.Map.Entry;
 
 public class Inventaire {
     public static final int POIDS_MAXIMAL = 200;
@@ -27,14 +25,14 @@ public class Inventaire {
      */
     public boolean ajouter(Item item, int quantite) 
     {
-    	Integer quantitem =	contenuMap.get(item);
-    	int quant=0;
+    	Integer quantiteItem =	contenuMap.get(item);
+    	int ajout=0;
+    	// test si l'objet est déjà présent dans l'inventaire
+    	ajout = ( quantiteItem != null) ?  quantiteItem + quantite : quantite;
     	
-    	quant = ( quantitem != null) ?  quantitem + quantite : quantite;
-    	
-    	if(getPoidsTotal() + quantite*item.getPoids() <= POIDS_MAXIMAL)
+    	if(getPoidsTotal() + quantite*item.getPoids() <= Inventaire.POIDS_MAXIMAL)
     		{
-    			contenuMap.put(item, quant);
+    			this.contenuMap.put(item, ajout);
     			return true;
     		}
     	return false;
@@ -80,15 +78,10 @@ public class Inventaire {
      * @return
      */
     public int getPoidsTotal() {
-    	Set<Item> listeItem = getContenu();
-    	Iterator<Item> it = listeItem.iterator();
     	int poids=0;
+    	for( Item itm : this.getContenu() )
+    		poids += this.getQuantite( itm )*itm.getPoids();
     	
-    	while ( it.hasNext() ){
-    		Item i = it.next();
-            poids += getQuantite( i )*i.getPoids();
-        }
-        
     	return poids;
     }
 }

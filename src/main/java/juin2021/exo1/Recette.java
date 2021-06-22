@@ -2,8 +2,11 @@ package juin2021.exo1;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
+
+
+
 
 public class Recette {
     private HashMap<Item,Integer> ingredients;
@@ -41,10 +44,30 @@ public class Recette {
 
 
     /**
-     * Applique la recette (à écrire !!!)
+     * Applique la recette.
+     * Si tous les ingrédients sont disponible en quantité suffisante dans l'inventaire. 
+     * On retire les ingrédients utilisés par la recette de l'inventaire puis on ajoute l'objet
+     * créé par la recette dans l'inventaire. 
+     * On considère que le poids total de l'inventaire après la recette ne peut que etre égale 
+     * ou inferieur au poids d'avant la recette. Dans le cas contraire et si il n'y a pas la place 
+     * de stocker l'objet fabriqué. Les ingrédients utilisés pour la recette sont perdus.
+     * @param inventaire
      */
+    
+    
     public boolean appliquer(Inventaire inventaire) {
-        throw new RuntimeException("à écrire");
+      //vérifier qu'il y a les ingrédients nécéssaires dans l'inventaire
+        for( Map.Entry<Item, Integer> entry : this.ingredients.entrySet() ) {
+        	if(inventaire.getQuantite( entry.getKey() ) < entry.getValue())
+        		return false;
+        }
+        
+      //modifier l'inventaire en retirant les ingrédients
+        for( Map.Entry<Item, Integer> entry : this.ingredients.entrySet() ) 
+        	inventaire.retirer( entry.getKey(), entry.getValue() );
+        
+        inventaire.ajouter(this.resultat, 1);
+        return true;
     }
     
 }
